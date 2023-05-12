@@ -25,11 +25,11 @@
 	}
 	h2 {
 		color: #aabbcc;
-		font-size: 3em;
+		font-size: 2em;
 	}
 	h1 {
 		color: #ddeeff;
-		font-size: 7em;
+		font-size: 5em;
 	}
 	.up-button {
 		width: 0;
