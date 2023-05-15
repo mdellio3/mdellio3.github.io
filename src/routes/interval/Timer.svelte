@@ -3,33 +3,37 @@
 	let time = 0;
 	let counting = false;
 	let working = true;
-	let max = $work;
+	let max = $work * 100;
 	let currentLap = 1;
 	let interval;
 	const startTimer = () => {
+		time = max;
 		interval = setInterval(() => {
 			const sec = Math.floor((time % 6000) / 100);
 			if (working) {
-				if (sec === max) {
+				if (sec === 0) {
 					working = false;
-					time = 0;
-					max = $rest;
+					time = max = $rest * 100;
 				} else {
-					time += 1;
+					time -= 1;
 				}
 			} else {
-				if (sec === max) {
+				if (sec === 0) {
 					if (currentLap === $laps) {
 						stopTimer();
 						return;
 					}
 					working = true;
-					time = 0;
-					max = $work;
+					time = max = $work * 100;
 					currentLap++;
 				} else {
-					time += 1;
+					time -= 1;
 				}
+			}
+
+			if (time === 405) {
+				const sound = new Audio('./countdown.wav');
+				sound.play();
 			}
 		}, 10);
 		counting = true;
