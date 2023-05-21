@@ -18,10 +18,10 @@
 
 	const incrementLaps = () => ($laps += 1);
 	const decrementLaps = () => ($laps -= 1);
-	const incrementWork = () => ($work += 1);
-	const decrementWork = () => ($work -= 1);
-	const incrementRest = () => ($rest += 1);
-	const decrementRest = () => ($rest -= 1);
+	const incrementWork = () => ($work += 5);
+	const decrementWork = () => ($work -= 5);
+	const incrementRest = () => ($rest += 5);
+	const decrementRest = () => ($rest -= 5);
 </script>
 
 <h1>{timeString}</h1>

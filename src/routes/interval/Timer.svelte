@@ -6,6 +6,12 @@
 	let max = $work * 100;
 	let currentLap = 1;
 	let interval;
+	const sound = new Audio('./countdown.wav');
+	sound.load();
+	const soundReset = () => {
+		sound.pause();
+		sound.currentTime = 0;
+	};
 	const startTimer = () => {
 		time = max;
 		interval = setInterval(() => {
@@ -32,7 +38,6 @@
 			}
 
 			if (time === 405) {
-				const sound = new Audio('./countdown.wav');
 				sound.play();
 			}
 		}, 10);
@@ -42,11 +47,13 @@
 	const stopTimer = () => {
 		clearInterval(interval);
 		counting = false;
+		soundReset();
 	};
 
 	const resetTimer = () => {
 		time = 0;
 		currentLap = 1;
+		soundReset();
 	};
 
 	const formatTime = (time) => {
@@ -58,6 +65,12 @@
 			.padStart(2, '0');
 		const centis = (time % 100).toString().padStart(2, '0');
 		return `${minutes}:${seconds}.${centis}`;
+	};
+
+	const backPressed = () => {
+		stopTimer();
+		resetTimer();
+		$editing = !$editing;
 	};
 </script>
 
@@ -74,7 +87,7 @@
 	<button on:click={resetTimer}>RESET</button>
 </span>
 
-<button on:click={() => ($editing = !$editing)}>BACK</button>
+<button on:click={backPressed}>BACK</button>
 
 <style>
 	:global(body) {
